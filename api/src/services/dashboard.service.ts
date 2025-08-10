@@ -1,5 +1,5 @@
-import path from 'path';
 import fs from 'fs';
+import path from 'path';
 
 const dbPath = path.resolve(__dirname, '../../db/DataSet.json');
 
@@ -30,9 +30,12 @@ export const getDashboardData = (timeframe: string) => {
 
   const filterByDate = (item: { createdAt: string }) => new Date(item.createdAt) >= startDate;
 
+
   const liveCalls = (data.liveCalls || []).filter(filterByDate);
   const communications = (data.communication || []).filter(filterByDate);
   const tasks = (data.tasks || []).filter(filterByDate);
+  const patientsSatisfaction = (data.patientsSatisfaction.patientsData || []);
+  const employeesSatisfaction = (data.employeesSatisfaction.employeesData || []);
 
   const meetings = liveCalls.length;
   const brushing = communications.filter((c: any) => c.type === 'brushing').length;
@@ -45,5 +48,7 @@ export const getDashboardData = (timeframe: string) => {
     instructionsSent,
     tasks: tasks.length,
     timeSaved,
+    patientsSatisfaction,
+    employeesSatisfaction,
   };
 };
