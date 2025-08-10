@@ -1,16 +1,13 @@
 import { FileText } from 'lucide-react';
 import { SatisfactionBar } from "./satisfaction-bar";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { DashboardData, Patient, Employee } from '../types';
 
 interface SecondColumnProps {
-  data: {
-    instructionsSent: number;
-    patientsSatisfaction: any[];
-    employeesSatisfaction: any[];
-  } | null;
+  data: DashboardData | null;
 }
 
-const calculateSatisfaction = (satisfactionData: any[]) => {
+const calculateSatisfaction = (satisfactionData: (Patient | Employee)[]) => {
   if (!satisfactionData || satisfactionData.length === 0) {
     return { green: 0, yellow: 0, red: 0 };
   }

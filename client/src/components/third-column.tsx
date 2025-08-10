@@ -1,13 +1,11 @@
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { ToggleGroup, ToggleGroupItem } from "./ui/toggle-group";
-import { PatientListItem } from "./patient-list-item";
-
 import { useState } from 'react';
+import { DashboardData } from '../types';
+import { PatientListItem } from './patient-list-item';
+import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+import { ToggleGroup, ToggleGroupItem } from './ui/toggle-group';
 
 interface ThirdColumnProps {
-  data: {
-    patientsSatisfaction: any[];
-  } | null;
+  data: DashboardData | null;
 }
 
 export function ThirdColumn({ data }: ThirdColumnProps) {
@@ -23,9 +21,9 @@ export function ThirdColumn({ data }: ThirdColumnProps) {
       <CardHeader>
         <CardTitle>Overall Patients Sentiment</CardTitle>
       </CardHeader>
-      <CardContent className="flex-grow flex flex-col">
-        <ToggleGroup 
-          type="multiple" 
+      <CardContent className="max-h-[calc(100vh-200px)] flex-grow flex flex-col overflow-y-auto">
+        <ToggleGroup
+          type="multiple"
           className="justify-start mb-4"
           onValueChange={setFilter}
         >

@@ -1,13 +1,9 @@
+import { CheckCircle, Clock, ListChecks, Smile } from 'lucide-react';
+import { DashboardData } from '../types';
 import { DashboardCard } from "./dashboard-card";
-import { CheckCircle, Clock, Heart, ListChecks, Smile } from 'lucide-react';
 
 interface FirstColumnProps {
-  data: {
-    meetings: number;
-    tasks: number;
-    brushing: number;
-    timeSaved: number;
-  } | null;
+  data: DashboardData | null;
 }
 
 export function FirstColumn({ data }: FirstColumnProps) {
@@ -15,7 +11,7 @@ export function FirstColumn({ data }: FirstColumnProps) {
   const timeSavedDisplay = `${timeSavedHours}h`;
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 h-full">
       <DashboardCard title="Meetings Completed" value={data?.meetings.toString() ?? '...'} icon={<CheckCircle className="h-4 w-4 text-muted-foreground" />} />
       <DashboardCard title="Tasks Completed" value={data?.tasks.toString() ?? '...'} icon={<ListChecks className="h-4 w-4 text-muted-foreground" />} />
       <DashboardCard title="Brushing Count" value={data?.brushing.toString() ?? '...'} icon={<Smile className="h-4 w-4 text-muted-foreground" />} />
