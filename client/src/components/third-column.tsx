@@ -2,45 +2,40 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { ToggleGroup, ToggleGroupItem } from "./ui/toggle-group";
 import { PatientListItem } from "./patient-list-item";
 
-const patients = [
-  {
-    name: "John Doe",
-    avatarUrl: "https://github.com/shadcn.png",
-    scans: 5,
-    lastComm: "2023-08-01",
-    comment: "Patient is responding well to treatment.",
-  },
-  {
-    name: "Jane Smith",
-    avatarUrl: "https://github.com/shadcn.png",
-    scans: 3,
-    lastComm: "2023-08-02",
-    comment: "Needs encouragement to complete daily tasks.",
-  },
-  {
-    name: "Sam Wilson",
-    avatarUrl: "https://github.com/shadcn.png",
-    scans: 8,
-    lastComm: "2023-07-28",
-    comment: "Excellent progress, very motivated.",
-  },
-];
+import { useState } from 'react';
 
-export function ThirdColumn() {
+interface ThirdColumnProps {
+  data: {
+    patientsSatisfaction: any[];
+  } | null;
+}
+
+export function ThirdColumn({ data }: ThirdColumnProps) {
+  const [filter, setFilter] = useState<string[]>([]);
+
+  const filteredPatients = (data?.patientsSatisfaction || []).filter(patient => {
+    if (filter.length === 0) return true;
+    return filter.includes(patient.satisfaction);
+  });
+
   return (
     <Card className="h-full flex flex-col">
       <CardHeader>
         <CardTitle>Overall Patients Sentiment</CardTitle>
       </CardHeader>
       <CardContent className="flex-grow flex flex-col">
-        <ToggleGroup type="multiple" className="justify-start mb-4">
-          <ToggleGroupItem value="better">Can be better</ToggleGroupItem>
+        <ToggleGroup 
+          type="multiple" 
+          className="justify-start mb-4"
+          onValueChange={setFilter}
+        >
+          <ToggleGroupItem value="negative">Can be better</ToggleGroupItem>
           <ToggleGroupItem value="neutral">Neutral</ToggleGroupItem>
           <ToggleGroupItem value="positive">Positive</ToggleGroupItem>
         </ToggleGroup>
-        <div className="flex-grow space-y-4">
-          {patients.map((patient) => (
-            <PatientListItem key={patient.name} patient={patient} />
+        <div className="flex-grow space-y-4 overflow-y-auto">
+          {filteredPatients.map((patient) => (
+            <PatientListItem key={patient.id} patient={patient} />
           ))}
         </div>
       </CardContent>
