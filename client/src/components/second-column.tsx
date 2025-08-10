@@ -1,6 +1,6 @@
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { SatisfactionBar } from "./satisfaction-bar";
 import { FileText } from 'lucide-react';
+import { SatisfactionBar } from "./satisfaction-bar";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
 export function SecondColumn() {
   return (
