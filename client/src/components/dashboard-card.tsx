@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Card, CardContent, CardTitle } from "./ui/card";
 
 interface DashboardCardProps {
   title: string;
@@ -8,13 +8,15 @@ interface DashboardCardProps {
 
 export function DashboardCard({ title, value, icon }: DashboardCardProps) {
   return (
-    <Card className="flex-grow flex flex-col">
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-sm font-medium">{title}</CardTitle>
-        {icon}
-      </CardHeader>
-      <CardContent className="flex-grow flex items-end">
-        <div className="text-2xl font-bold">{value}</div>
+    <Card className="flex-grow bg-white border-none shadow-sm">
+      <CardContent className="p-4 flex items-center gap-2">
+        <div>{icon}</div>
+        <div className="flex flex-col items-start">
+          <CardTitle className="text-sm font-medium text-muted-foreground">
+            {title}
+          </CardTitle>
+          <div className="text-2xl font-bold">{value}</div>
+        </div>
       </CardContent>
     </Card>
   );

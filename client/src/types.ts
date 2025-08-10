@@ -22,4 +22,5 @@ export interface DashboardData {
   timeSaved: number;
   patientsSatisfaction: Patient[];
   employeesSatisfaction: Employee[];
+  likes: number;
 }

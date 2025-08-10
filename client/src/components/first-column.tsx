@@ -1,6 +1,11 @@
-import { CheckCircle, Clock, ListChecks, Smile } from 'lucide-react';
 import { DashboardData } from '../types';
 import { DashboardCard } from "./dashboard-card";
+
+import Brushing from '../assets/brushing.svg';
+import Likes from '../assets/likes.svg';
+import Meetings from '../assets/meetingsIcon.svg';
+import Tasks from '../assets/tasks.svg';
+import TimeSaved from '../assets/timesaved.svg';
 
 interface FirstColumnProps {
   data: DashboardData | null;
@@ -12,10 +17,11 @@ export function FirstColumn({ data }: FirstColumnProps) {
 
   return (
     <div className="flex flex-col gap-4 h-full">
-      <DashboardCard title="Meetings Completed" value={data?.meetings.toString() ?? '...'} icon={<CheckCircle className="h-4 w-4 text-muted-foreground" />} />
-      <DashboardCard title="Tasks Completed" value={data?.tasks.toString() ?? '...'} icon={<ListChecks className="h-4 w-4 text-muted-foreground" />} />
-      <DashboardCard title="Brushing Count" value={data?.brushing.toString() ?? '...'} icon={<Smile className="h-4 w-4 text-muted-foreground" />} />
-      <DashboardCard title="Time Saved" value={timeSavedDisplay} icon={<Clock className="h-4 w-4 text-muted-foreground" />} />
+      <DashboardCard title="Meetings Completed" value={data?.meetings.toString() ?? '...'} icon={<img src={Meetings} className="h-20 w-20" />} />
+      <DashboardCard title="Tasks Completed" value={data?.tasks.toString() ?? '...'} icon={<img src={Tasks} className="h-20 w-20" />} />
+      <DashboardCard title="Brushing Count" value={data?.brushing.toString() ?? '...'} icon={<img src={Brushing} className="h-20 w-20" />} />
+      <DashboardCard title="Likes" value={data?.likes.toString() ?? '...'} icon={<img src={Likes} className="h-20 w-20" />} />
+      <DashboardCard title="Time Saved" value={timeSavedDisplay} icon={<img src={TimeSaved} className="h-20 w-20" />} />
     </div>
   );
 }

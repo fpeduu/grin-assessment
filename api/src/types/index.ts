@@ -19,6 +19,12 @@ export interface Task {
 
 export type Satisfaction = 'positive' | 'neutral' | 'negative';
 
+export interface Like {
+  id: string;
+  entityType: 'like';
+  createdAt: string;
+}
+
 export interface Patient {
   id: string;
   lastCommunicationDate: string;
@@ -37,6 +43,7 @@ export interface DataSet {
   liveCalls: LiveCall[];
   tasks: Task[];
   communication: Communication[];
+  likes: Like[];
   patientsSatisfaction: {
     summary: Record<Satisfaction, number>;
     patientsData: Patient[];

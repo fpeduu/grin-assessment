@@ -9,7 +9,7 @@ import { DashboardData } from "../types";
 
 export function DashboardPage() {
   const [data, setData] = useState<DashboardData | null>(null);
-  const [timeframe, setTimeframe] = useState('monthly');
+  const [timeframe, setTimeframe] = useState('all');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,9 +27,9 @@ export function DashboardPage() {
   return (
     <div className="flex flex-col h-screen bg-background text-foreground">
       <Header />
-      <main className="flex-grow p-4 md:p-8 flex flex-col items-center">
+      <main className="flex-grow p-4 md:p-8 flex flex-col">
         <TimeframeSwitch timeframe={timeframe} setTimeframe={setTimeframe} />
-        <div className="flex-grow w-full grid grid-cols-1 lg:grid-cols-4 gap-4 lg:grid-rows-1">
+        <div className="flex-grow w-full grid grid-cols-1 lg:grid-cols-4 gap-4 lg:grid-rows-1 mt-4">
           <div className="lg:col-span-1">
             <FirstColumn data={data} />
           </div>

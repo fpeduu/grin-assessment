@@ -8,7 +8,7 @@ module.exports = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
+        background: "#F5F5FA",
         foreground: "hsl(var(--foreground))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
@@ -62,4 +62,3 @@ module.exports = {
   },
   plugins: [require("tailwindcss-animate")],
 };
-

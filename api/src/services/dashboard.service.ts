@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { DataSet, Timeframe, Communication } from '../types';
+import { Communication, DataSet, Timeframe } from '../types';
 
 const dbPath = path.resolve(__dirname, '../../db/DataSet.json');
 
@@ -32,7 +32,8 @@ export const getDashboardData = (timeframe: string) => {
   const liveCalls = (data.liveCalls || []).filter(filterByDate);
   const communications = (data.communication || []).filter(filterByDate);
   const tasks = (data.tasks || []).filter(filterByDate);
-  
+  const likes = (data.likes || []).filter(filterByDate);
+
   const meetings = liveCalls.length;
   const brushing = communications.filter((c: Communication) => c.type === 'brushing').length;
   const instructionsSent = communications.filter((c: Communication) => c.type === 'instructions').length;
@@ -46,5 +47,6 @@ export const getDashboardData = (timeframe: string) => {
     timeSaved,
     patientsSatisfaction: data.patientsSatisfaction?.patientsData || [],
     employeesSatisfaction: data.employeesSatisfaction?.employeesData || [],
+    likes: likes.length,
   };
 };
