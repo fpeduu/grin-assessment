@@ -50,3 +50,24 @@ export const getDashboardData = (timeframe: string) => {
     likes: likes.length,
   };
 };
+
+export const getPatientSentiment = (page: number, limit: number, sentiment?: string) => {
+  const data = readData();
+  let patients = data.patientsSatisfaction?.patientsData || [];
+
+  if (sentiment) {
+    patients = patients.filter(p => p.satisfaction === sentiment);
+  }
+
+  const startIndex = (page - 1) * limit;
+  const endIndex = page * limit;
+
+  const results = patients.slice(startIndex, endIndex);
+
+  return {
+    data: results,
+    total: patients.length,
+    page,
+    limit,
+  };
+};

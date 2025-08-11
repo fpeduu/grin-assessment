@@ -21,7 +21,7 @@ export function ThirdColumn({ data }: ThirdColumnProps) {
       <CardHeader>
         <CardTitle>Overall Patients Sentiment</CardTitle>
       </CardHeader>
-      <CardContent className="max-h-[calc(80vh)] flex-grow flex flex-col overflow-y-auto">
+      <CardContent className="max-h-[calc(100vh-200px)] flex-grow flex flex-col overflow-y-auto">
         <ToggleGroup
           type="multiple"
           className="justify-start mb-4"
