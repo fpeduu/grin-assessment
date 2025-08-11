@@ -54,7 +54,7 @@ export function SecondColumn({ data }: SecondColumnProps) {
         <DashboardCard
           title="Instructions Sent"
           value={data?.instructionsSent?.toString() ?? '...'}
-          icon={<img src={Instructions} className="h-12 w-12" />}
+          icon={<img src={Instructions} alt="Instructions" className="h-12 w-12" />}
         />
       </div>
 

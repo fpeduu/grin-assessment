@@ -9,7 +9,17 @@ import NegativeIcon from '../assets/negative.svg';
 import NeutralIcon from '../assets/neutral.svg';
 import PositiveIcon from '../assets/positive.svg';
 
-export function ThirdColumn() {
+interface SentimentCounts {
+  positive: number;
+  neutral: number;
+  negative: number;
+}
+
+interface ThirdColumnProps {
+  sentimentCounts?: SentimentCounts;
+}
+
+export function ThirdColumn({ sentimentCounts = { positive: 0, neutral: 0, negative: 0 } }: ThirdColumnProps) {
   const [patients, setPatients] = useState<Patient[]>([]);
   const [filter, setFilter] = useState('');
   const [page, setPage] = useState(1);
@@ -88,7 +98,7 @@ export function ThirdColumn() {
           >
             <img src={NegativeIcon} alt="Negative" className="h-4 w-4" />
             <span className="font-medium">Can Be Better</span>
-            <span className="font-semibold">6</span>
+            <span className="font-semibold">{sentimentCounts.negative}</span>
           </ToggleGroupItem>
 
           <ToggleGroupItem
@@ -97,7 +107,7 @@ export function ThirdColumn() {
           >
             <img src={NeutralIcon} alt="Neutral" className="h-4 w-4" />
             <span className="font-medium">Neutral</span>
-            <span className="font-semibold">2</span>
+            <span className="font-semibold">{sentimentCounts.neutral}</span>
           </ToggleGroupItem>
 
           <ToggleGroupItem
@@ -106,11 +116,11 @@ export function ThirdColumn() {
           >
             <img src={PositiveIcon} alt="Positive" className="h-4 w-4" />
             <span className="font-medium">Positive</span>
-            <span className="font-semibold">4</span>
+            <span className="font-semibold">{sentimentCounts.positive}</span>
           </ToggleGroupItem>
         </ToggleGroup>
 
-        <div className="flex-grow space-y-4 overflow-y-auto">
+        <div className="flex-grow space-y-4 overflow-y-auto border-t border-muted-text">
           {patients.map((patient, index) => (
             <div
               key={patient.id}

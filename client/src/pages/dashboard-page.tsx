@@ -1,14 +1,35 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { FirstColumn } from '../components/first-column';
 import { Header } from '../components/header';
 import { SecondColumn } from '../components/second-column';
 import { ThirdColumn } from '../components/third-column';
 import { TimeframeSwitch } from '../components/timeframe-switch';
 import { getDashboardData } from '../services/api';
-import { DashboardData } from '../types';
+import { DashboardData, Satisfaction } from '../types';
+
+type SentimentCounts = {
+  positive: number;
+  neutral: number;
+  negative: number;
+};
+
+const getSentimentCounts = (patients: { satisfaction: Satisfaction }[]): SentimentCounts => {
+  const counts: SentimentCounts = { positive: 0, neutral: 0, negative: 0 };
+  
+  patients.forEach(patient => {
+    counts[patient.satisfaction]++;
+  });
+  
+  return counts;
+};
 
 export function DashboardPage() {
   const [data, setData] = useState<DashboardData | null>(null);
+  
+  const sentimentCounts = useMemo<SentimentCounts>(() => {
+    if (!data) return { positive: 0, neutral: 0, negative: 0 };
+    return getSentimentCounts(data.patientsSatisfaction);
+  }, [data]);
   const [timeframe, setTimeframe] = useState('all');
 
   useEffect(() => {
@@ -37,7 +58,7 @@ export function DashboardPage() {
             <SecondColumn data={data} />
           </div>
           <div className="lg:col-span-2">
-            <ThirdColumn />
+            <ThirdColumn sentimentCounts={sentimentCounts} />
           </div>
         </div>
       </main>
