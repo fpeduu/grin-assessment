@@ -99,17 +99,10 @@ grin-assessment/
 
 ## Environment Variables
 
-### API
-Create a `.env` file in the `api` directory with:
-```
-PORT=3001
-NODE_ENV=development
-```
-
 ### Client
 Create a `.env` file in the `client` directory with:
 ```
-VITE_API_URL=http://localhost:3001
+REACT_APP_API_URL=http://localhost:3001
 ```
 
 ## Testing
