@@ -34,7 +34,7 @@ export function SecondColumn({ data }: SecondColumnProps) {
   return (
     <div className="flex flex-col gap-4 h-full">
       <div>
-        <DashboardCard title="Instructions Sent" value={data?.instructionsSent?.toString() ?? '...'} icon={<img src={Instructions} className="h-20 w-20" />} />
+        <DashboardCard title="Instructions Sent" value={data?.instructionsSent?.toString() ?? '...'} icon={<img src={Instructions} className="h-12 w-12" />} />
       </div>
 
       <div className="h-2/5">
