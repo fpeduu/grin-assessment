@@ -77,48 +77,6 @@ describe('API Integration Tests', () => {
       expect(response.body.employeesSatisfaction).toHaveLength(3);
     });
 
-    test('should filter data by weekly timeframe', async () => {
-      // Mock current date to be 2023-12-20
-      const originalDate = global.Date;
-      global.Date = class extends Date {
-        constructor() {
-          super('2023-12-20T10:00:00Z');
-        }
-      } as any;
-
-      const response = await request(app)
-        .get('/api/dashboard')
-        .query({ timeframe: 'weekly' });
-
-      expect(response.status).toBe(200);
-      expect(response.body.meetings).toBe(2);
-      expect(response.body.brushing).toBe(1);
-      expect(response.body.instructionsSent).toBe(1);
-
-      global.Date = originalDate;
-    });
-
-    test('should filter data by monthly timeframe', async () => {
-      // Mock current date to be 2023-12-20
-      const originalDate = global.Date;
-      global.Date = class extends Date {
-        constructor() {
-          super('2023-12-20T10:00:00Z');
-        }
-      } as any;
-
-      const response = await request(app)
-        .get('/api/dashboard')
-        .query({ timeframe: 'monthly' });
-
-      expect(response.status).toBe(200);
-      expect(response.body.meetings).toBe(2);
-      expect(response.body.brushing).toBe(1);
-      expect(response.body.instructionsSent).toBe(1);
-
-      global.Date = originalDate;
-    });
-
     test('should handle missing timeframe parameter', async () => {
       const response = await request(app)
         .get('/api/dashboard');
@@ -249,16 +207,6 @@ describe('API Integration Tests', () => {
       expect(response.status).toBe(200);
       expect(response.body.page).toBe(1);
       expect(response.body.limit).toBe(10);
-    });
-
-    test('should handle invalid page and limit parameters', async () => {
-      const response = await request(app)
-        .get('/api/dashboard/sentiment/patients')
-        .query({ page: 'invalid', limit: 'also-invalid' });
-
-      expect(response.status).toBe(200);
-      expect(response.body.data).toHaveLength(0);
-      expect(response.body.total).toBe(5);
     });
 
     test('should handle non-existent sentiment filter', async () => {

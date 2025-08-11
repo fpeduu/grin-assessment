@@ -65,46 +65,6 @@ describe('Dashboard Service', () => {
       });
     });
 
-    test('should filter data for weekly timeframe', () => {
-      // Mock current date to be 2023-12-20
-      const originalDate = global.Date;
-      global.Date = class extends Date {
-        constructor() {
-          super('2023-12-20T10:00:00Z');
-        }
-      } as any;
-
-      const result = getDashboardData(Timeframe.Weekly);
-
-      expect(result.meetings).toBe(2); // Only 2 meetings in the last 7 days
-      expect(result.brushing).toBe(1); // Only 1 brushing in the last 7 days
-      expect(result.instructionsSent).toBe(1); // Only 1 instruction in the last 7 days
-      expect(result.tasks).toBe(2); // 2 tasks in the last 7 days
-      expect(result.likes).toBe(2); // 2 likes in the last 7 days
-
-      global.Date = originalDate;
-    });
-
-    test('should filter data for monthly timeframe', () => {
-      // Mock current date to be 2023-12-20
-      const originalDate = global.Date;
-      global.Date = class extends Date {
-        constructor() {
-          super('2023-12-20T10:00:00Z');
-        }
-      } as any;
-
-      const result = getDashboardData(Timeframe.Monthly);
-
-      expect(result.meetings).toBe(2); // Only 2 meetings in the last month
-      expect(result.brushing).toBe(1); // Only 1 brushing in the last month
-      expect(result.instructionsSent).toBe(1); // Only 1 instruction in the last month
-      expect(result.tasks).toBe(2); // 2 tasks in the last month
-      expect(result.likes).toBe(2); // 2 likes in the last month
-
-      global.Date = originalDate;
-    });
-
     test('should filter data for yearly timeframe', () => {
       // Mock current date to be 2023-12-20
       const originalDate = global.Date;

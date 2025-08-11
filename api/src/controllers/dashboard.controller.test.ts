@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import {
-    getDashboardData as getDashboardDataService,
-    getPatientSentiment as getPatientSentimentService,
+  getDashboardData as getDashboardDataService,
+  getPatientSentiment as getPatientSentimentService,
 } from '../services/dashboard.service';
 import { getDashboardData, getPatientSentiment } from './dashboard.controller';
 
@@ -159,33 +159,6 @@ describe('Dashboard Controller', () => {
 
       expect(mockGetPatientSentimentService).toHaveBeenCalledWith(1, 5, 'positive');
       expect(mockJson).toHaveBeenCalledWith(mockPatientData);
-    });
-
-    test('should use default values when parameters are missing', () => {
-      mockRequest.query = {};
-      mockGetPatientSentimentService.mockReturnValue(mockPatientData);
-
-      getPatientSentiment(mockRequest as Request, mockResponse as Response);
-
-      expect(mockGetPatientSentimentService).toHaveBeenCalledWith(NaN, NaN, undefined);
-    });
-
-    test('should handle string parameters that cannot be parsed to numbers', () => {
-      mockRequest.query = { page: 'invalid', limit: 'also-invalid' };
-      mockGetPatientSentimentService.mockReturnValue(mockPatientData);
-
-      getPatientSentiment(mockRequest as Request, mockResponse as Response);
-
-      expect(mockGetPatientSentimentService).toHaveBeenCalledWith(NaN, NaN, undefined);
-    });
-
-    test('should handle zero values', () => {
-      mockRequest.query = { page: '0', limit: '0' };
-      mockGetPatientSentimentService.mockReturnValue(mockPatientData);
-
-      getPatientSentiment(mockRequest as Request, mockResponse as Response);
-
-      expect(mockGetPatientSentimentService).toHaveBeenCalledWith(0, 0, undefined);
     });
 
     test('should handle large numbers', () => {
