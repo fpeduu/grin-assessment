@@ -52,7 +52,7 @@ export function ThirdColumn() {
     if (page > 1) {
       fetchPatients(page, filter);
     }
-  }, [page]);
+  }, [page, filter]);
 
   const handleFilterChange = (value: string) => {
     setFilter(value || '');
