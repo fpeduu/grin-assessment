@@ -12,7 +12,15 @@ interface SatisfactionBarProps {
   description: string;
 }
 
-export function SatisfactionBar({ green, yellow, red, positiveCount, neutralCount, negativeCount, description }: SatisfactionBarProps) {
+export function SatisfactionBar({
+  green,
+  yellow,
+  red,
+  positiveCount,
+  neutralCount,
+  negativeCount,
+  description,
+}: SatisfactionBarProps) {
   return (
     <div className="w-full flex flex-col gap-6">
       {/* Icons and Counts */}

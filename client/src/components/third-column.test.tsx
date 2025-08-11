@@ -35,8 +35,18 @@ describe('ThirdColumn component', () => {
 
   test('should display loading state initially and then render patients', async () => {
     const mockPatients: Patient[] = [
-      { id: '1', name: 'John Doe', satisfaction: 'positive', lastCommunicationDate: '2023-01-01' },
-      { id: '2', name: 'Jane Doe', satisfaction: 'neutral', lastCommunicationDate: '2023-01-02' },
+      {
+        id: '1',
+        name: 'John Doe',
+        satisfaction: 'positive',
+        lastCommunicationDate: '2023-01-01',
+      },
+      {
+        id: '2',
+        name: 'Jane Doe',
+        satisfaction: 'neutral',
+        lastCommunicationDate: '2023-01-02',
+      },
     ];
     mockGetPatientSentiment.mockResolvedValue({ data: mockPatients, total: 2 });
 
@@ -73,15 +83,20 @@ describe('ThirdColumn component', () => {
   });
 
   test('should handle API errors gracefully', async () => {
-    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    const consoleErrorSpy = jest
+      .spyOn(console, 'error')
+      .mockImplementation(() => {});
     mockGetPatientSentiment.mockRejectedValue(new Error('API Error'));
 
     render(<ThirdColumn />);
 
     await waitFor(() => {
-        expect(consoleErrorSpy).toHaveBeenCalledWith('Failed to fetch patients', expect.any(Error));
+      expect(consoleErrorSpy).toHaveBeenCalledWith(
+        'Failed to fetch patients',
+        expect.any(Error),
+      );
     });
-    
+
     consoleErrorSpy.mockRestore();
   });
 });

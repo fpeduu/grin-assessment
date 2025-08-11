@@ -1,11 +1,14 @@
-import { ToggleGroup, ToggleGroupItem } from "./ui/toggle-group";
+import { ToggleGroup, ToggleGroupItem } from './ui/toggle-group';
 
 interface TimeframeSwitchProps {
   timeframe: string;
   setTimeframe: (value: string) => void;
 }
 
-export function TimeframeSwitch({ timeframe, setTimeframe }: TimeframeSwitchProps) {
+export function TimeframeSwitch({
+  timeframe,
+  setTimeframe,
+}: TimeframeSwitchProps) {
   return (
     <ToggleGroup
       type="single"

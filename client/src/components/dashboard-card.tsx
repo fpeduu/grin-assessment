@@ -1,4 +1,4 @@
-import { Card, CardContent, CardTitle } from "./ui/card";
+import { Card, CardContent, CardTitle } from './ui/card';
 
 interface DashboardCardProps {
   title: string;

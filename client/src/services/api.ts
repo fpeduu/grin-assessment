@@ -2,8 +2,12 @@ import { DashboardData, Patient } from '../types';
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
 
-export const getDashboardData = async (timeframe: string): Promise<DashboardData> => {
-  const response = await fetch(`${API_URL}/api/dashboard?timeframe=${timeframe}`);
+export const getDashboardData = async (
+  timeframe: string,
+): Promise<DashboardData> => {
+  const response = await fetch(
+    `${API_URL}/api/dashboard?timeframe=${timeframe}`,
+  );
   if (!response.ok) {
     throw new Error('Failed to fetch dashboard data');
   }
@@ -13,7 +17,7 @@ export const getDashboardData = async (timeframe: string): Promise<DashboardData
 export const getPatientSentiment = async (
   page: number,
   limit: number,
-  sentiment?: string
+  sentiment?: string,
 ): Promise<{ data: Patient[]; total: number }> => {
   const params = new URLSearchParams({
     page: page.toString(),
@@ -22,7 +26,9 @@ export const getPatientSentiment = async (
   if (sentiment) {
     params.append('sentiment', sentiment);
   }
-  const response = await fetch(`${API_URL}/api/dashboard/sentiment/patients?${params.toString()}`);
+  const response = await fetch(
+    `${API_URL}/api/dashboard/sentiment/patients?${params.toString()}`,
+  );
   if (!response.ok) {
     throw new Error('Failed to fetch patient sentiment');
   }
