@@ -64,6 +64,12 @@ export function ThirdColumn() {
     setFilter(value || '');
   };
 
+  const tagClass = (isActive: boolean) =>
+    `flex w-full items-center gap-2 px-6 py-1.5 rounded-md transition
+    bg-[#E6E6FA] text-black border-0
+    hover:bg-[#828CEB] hover:text-white
+    data-[state=on]:bg-[#828CEB] data-[state=on]:border-2 data-[state=on]:border-[#555FEB] data-[state=on]:text-white`;
+
   return (
     <Card className="h-full flex flex-col bg-white border-none shadow-sm">
       <CardHeader>
@@ -78,19 +84,16 @@ export function ThirdColumn() {
         >
           <ToggleGroupItem
             value="negative"
-            className={`flex items-center gap-2 px-3 py-1.5 rounded-full border transition
-      ${filter === 'negative' ? 'bg-indigo-500 text-white' : ''}`}
+            className={tagClass(filter === 'negative')}
           >
             <img src={NegativeIcon} alt="Negative" className="h-4 w-4" />
-
             <span className="font-medium">Can Be Better</span>
             <span className="font-semibold">6</span>
           </ToggleGroupItem>
 
           <ToggleGroupItem
             value="neutral"
-            className={`flex items-center gap-2 px-3 py-1.5 rounded-full border transition
-      ${filter === 'neutral' ? 'bg-yellow-500 text-white' : ''}`}
+            className={tagClass(filter === 'neutral')}
           >
             <img src={NeutralIcon} alt="Neutral" className="h-4 w-4" />
             <span className="font-medium">Neutral</span>
@@ -99,8 +102,7 @@ export function ThirdColumn() {
 
           <ToggleGroupItem
             value="positive"
-            className={`flex items-center gap-2 px-3 py-1.5 rounded-full border transition
-      ${filter === 'positive' ? 'bg-green-500 text-white' : ''}`}
+            className={tagClass(filter === 'positive')}
           >
             <img src={PositiveIcon} alt="Positive" className="h-4 w-4" />
             <span className="font-medium">Positive</span>
