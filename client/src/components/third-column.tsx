@@ -46,12 +46,23 @@ export function ThirdColumn({ sentimentCounts = { positive: 0, neutral: 0, negat
     setLoading(true);
     try {
       const result = await getPatientSentiment(currentPage, 5, currentFilter);
-      setPatients((prev) =>
-        currentPage === 1 ? result.data : [...prev, ...result.data],
-      );
-      setHasMore(result.data.length > 0 && result.total > currentPage * 5);
+      if (result && result.data) {
+        setPatients((prev) =>
+          currentPage === 1 ? result.data : [...prev, ...result.data],
+        );
+        setHasMore(result.data.length > 0 && result.total > currentPage * 5);
+      } else {
+        // Handle case where result is undefined or doesn't have expected structure
+        setPatients((prev) => currentPage === 1 ? [] : prev);
+        setHasMore(false);
+      }
     } catch (error) {
       console.error('Failed to fetch patients', error);
+      // Reset patients on error for first page, keep existing for pagination
+      if (currentPage === 1) {
+        setPatients([]);
+      }
+      setHasMore(false);
     } finally {
       setLoading(false);
     }

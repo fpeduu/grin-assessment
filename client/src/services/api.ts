@@ -15,8 +15,8 @@ export const getDashboardData = async (
 };
 
 export const getPatientSentiment = async (
-  page: number,
-  limit: number,
+  page: number = 1,
+  limit: number = 10,
   sentiment?: string,
 ): Promise<{ data: Patient[]; total: number }> => {
   const params = new URLSearchParams({

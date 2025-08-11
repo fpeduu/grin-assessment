@@ -13,7 +13,7 @@ A modern healthcare dashboard application that provides insights into patient sa
 ## Prerequisites
 
 - Node.js (v18 or higher)
-- npm (v10 or higher) or yarn
+- yarn
 - Git
 
 ## Getting Started
@@ -30,13 +30,13 @@ cd grin-assessment
 #### Install API Dependencies
 ```bash
 cd api
-npm install
+yarn install
 ```
 
 #### Install Client Dependencies
 ```bash
 cd ../client
-npm install
+yarn install
 ```
 
 ### 3. Start the Development Servers
@@ -45,7 +45,7 @@ npm install
 From the project root:
 ```bash
 cd api
-npm run dev
+yarn run dev
 ```
 
 The API server will start on http://localhost:3001
@@ -54,7 +54,7 @@ The API server will start on http://localhost:3001
 In a new terminal, from the project root:
 ```bash
 cd client
-npm run dev
+yarn run dev
 ```
 
 The client application will be available at http://localhost:3000
@@ -72,6 +72,7 @@ grin-assessment/
 ├── client/              # Frontend React application
 │   ├── public/
 │   ├── src/
+│   │   ├── __tests__/   # Tests
 │   │   ├── components/  # Reusable UI components
 │   │   ├── pages/       # Page components
 │   │   └── styles/      # Global styles
